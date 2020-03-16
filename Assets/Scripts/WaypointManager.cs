@@ -8,7 +8,7 @@ public class WaypointManager : MonoBehaviour
 
     private List<Transform> waypoints = new List<Transform>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         int i = 0;
         while (true)
@@ -23,9 +23,13 @@ public class WaypointManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 get_next_waypoint(int waypoint)
     {
-        
+        return waypoints[waypoint].position;
+    }
+
+    public int get_max_waypoints()
+    {
+        return waypoints.Count;
     }
 }
