@@ -5,8 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 0.02f;
-    public float health = 50f;
+    public float max_health = 50f;
 
+    public Healthbar healthbar;
+
+    private float curr_health;
     private int next_waypoint_num = 0;
     private int max_waypoints = -1;
     private Vector3 next_waypoint;
@@ -20,6 +23,8 @@ public class Enemy : MonoBehaviour
         waypointmanager = (WaypointManager)GameObject.Find("WaypointManager").GetComponent(typeof(WaypointManager));
         next_waypoint = waypointmanager.get_next_waypoint(next_waypoint_num);
         max_waypoints = waypointmanager.get_max_waypoints();
+
+        curr_health = max_health;
     }
 
     // Update is called once per frame
@@ -40,9 +45,6 @@ public class Enemy : MonoBehaviour
 
             remaining -= travelled;
             distance_travelled += travelled;
-
-            print(travelled);
-            print(remaining);
 
             gameObject.transform.position = new_pos;
 
