@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 0.02f;
     public float max_health = 50f;
+    public float attack = 1f;
 
     public Healthbar healthbar;
 
@@ -14,12 +15,15 @@ public class Enemy : MonoBehaviour
     private int max_waypoints = -1;
     private Vector3 next_waypoint;
     private WaypointManager waypointmanager;
+    private GameManager gamemanager;
 
     private float distance_travelled = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        gamemanager = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
+
         waypointmanager = (WaypointManager)GameObject.Find("WaypointManager").GetComponent(typeof(WaypointManager));
         next_waypoint = waypointmanager.get_next_waypoint(next_waypoint_num);
         max_waypoints = waypointmanager.get_max_waypoints();
@@ -54,7 +58,7 @@ public class Enemy : MonoBehaviour
 
                 if (next_waypoint_num >= max_waypoints)
                 {
-                    damage_tower();
+                    damage_castle();
                     return;
                 }
                 next_waypoint = waypointmanager.get_next_waypoint(next_waypoint_num);
@@ -64,9 +68,27 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void damage_tower()
+    public void damage(float amount)
     {
-        print("ow");
+        curr_health = Mathf.Max(curr_health-amount, 0);
+
+        healthbar.health = curr_health / max_health;
+
+        if (curr_health == 0)
+        {
+            die();
+        }
+
+    }
+
+    void damage_castle()
+    {
+        gamemanager.damage_tower(attack);
+        die();
+    }
+
+    void die()
+    {
         GameObject.Destroy(gameObject);
     }
 }
