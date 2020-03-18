@@ -48,7 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.01
   max_health: 100
+  attack: 1
+  value: 20
   healthbar: {fileID: 2814540402284106689}
+  enemymanager: {fileID: 0}
 --- !u!61 &6942840267065834607
 BoxCollider2D:
   m_ObjectHideFlags: 0

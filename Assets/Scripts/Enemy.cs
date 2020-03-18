@@ -7,8 +7,10 @@ public class Enemy : MonoBehaviour
     public float speed = 0.02f;
     public float max_health = 50f;
     public float attack = 1f;
+    public int value = 10;
 
     public Healthbar healthbar;
+    public EnemyManager enemymanager;
 
     private float curr_health;
     private int next_waypoint_num = 0;
@@ -76,7 +78,7 @@ public class Enemy : MonoBehaviour
 
         if (curr_health == 0)
         {
-            die();
+            die(true);
         }
 
     }
@@ -84,11 +86,15 @@ public class Enemy : MonoBehaviour
     void damage_castle()
     {
         gamemanager.damage_tower(attack);
-        die();
+        die(false);
     }
 
-    void die()
+    void die(bool killed)
     {
+        if (killed)
+        {
+            enemymanager.report_death(value);
+        }
         GameObject.Destroy(gameObject);
     }
 }
