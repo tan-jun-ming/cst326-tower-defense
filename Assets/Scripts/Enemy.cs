@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Healthbar healthbar;
     public EnemyManager enemymanager;
 
-    private float curr_health;
+    public float curr_health;
     private int next_waypoint_num = 0;
     private int max_waypoints = -1;
     private Vector3 next_waypoint;
@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
     private GameManager gamemanager;
 
     private float distance_travelled = 0f;
+
+    public float get_distance()
+    {
+        return distance_travelled;
+    }
 
     // Start is called before the first frame update
     void Start()

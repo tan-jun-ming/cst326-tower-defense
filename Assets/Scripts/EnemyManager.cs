@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void spawn_enemy(int ind)
     {
-        GameObject obj = GameObject.Instantiate(enemies[ind], starting, Quaternion.identity);
+        GameObject obj = GameObject.Instantiate(enemies[ind], starting, Quaternion.Euler(90, 0, 0));
         ((Enemy)obj.GetComponent(typeof(Enemy))).enemymanager = this;
     }
 
