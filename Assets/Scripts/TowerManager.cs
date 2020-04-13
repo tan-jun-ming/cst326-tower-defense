@@ -5,6 +5,7 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     public Healthbar healthbar;
+    public GameObject towermodel;
 
     public float max_health = 10f;
     private float curr_health = 0;
@@ -31,6 +32,7 @@ public class TowerManager : MonoBehaviour
 
     void die()
     {
-        gamemanager.report_tower_death();
+        towermodel.SetActive(false);
+        gamemanager.game_over();
     }
 }

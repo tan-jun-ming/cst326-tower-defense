@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
                 if (next_waypoint_num >= max_waypoints)
                 {
-                    damage_castle();
+                    damage_tower();
                     return;
                 }
                 next_waypoint = waypointmanager.get_next_waypoint(next_waypoint_num);
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void damage_castle()
+    void damage_tower()
     {
         gamemanager.damage_tower(attack);
         die(false);
